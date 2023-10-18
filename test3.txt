@@ -1,0 +1,26 @@
+func printArr(int_arr arr[], int n) {
+        for (int i = 0; i < n; i = i + 1) {
+                echo(arr[i]);
+                echo(", ");
+        }
+        echo("\n");
+}
+
+int size = 7;
+int_arr myArr[size] = [1, -2, 4, 22, 9, 14, 13];
+printArr(myArr, size);
+
+int threshold = 10;
+
+int count = 0;
+for (int i = 0; i < size; i = i + 1) {
+        if (arr[i] > 10) {
+                count++;
+        }
+}
+
+echo("There are ");
+echo(count);
+echo(" numbers above the threshold and ");
+echo(size - count);
+echo(" numbers below or at the threshold.\n");

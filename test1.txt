@@ -1,0 +1,23 @@
+int ok = 0;
+
+while (!ok){
+        echo("Enter x: ");
+        int x = read();
+
+        echo("\nEnter y: ");
+        int y = read();
+
+        echo("\nEnter z: ");
+        int z = read();
+
+        if ((x == 0) | (y == 0) | (z == 0)) {
+                echo("You should enter nonzero values\n");
+        }
+        else {
+                ok = 1;
+        }
+}
+
+echo("(x times y times z) is: ");
+echo (x * y * z);
+echo("\n");
