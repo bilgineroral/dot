@@ -35,6 +35,7 @@ extern int yylineno;
 %token OR
 %token AND
 %token EQUALS
+%token EQ
 %token NOT_EQUALS
 %token LTE
 %token GTE
@@ -43,7 +44,8 @@ extern int yylineno;
 %token ASSIGN
 %token CONST
 %token STR
-
+%token DQ
+%token COMMENT
 %%
 
 program:
@@ -51,8 +53,8 @@ program:
 
 stmt_list: stmt SC
          | stmt SC stmt_list
-         | comment
-         | comment stmt_list
+         | COMMENT 
+         | COMMENT stmt_list
 
 stmt     : assign_stmt
          | declaration_stmt
@@ -74,14 +76,14 @@ declaration_stmt: dec_w_assign
                | dec_wo_assign
 
 dec_w_assign    : INT assign_stmt
-               | INT_ARR id LSB integer RSB EQ expression_stmt
+               | INT_ARR id LSB CONST RSB EQ expression_stmt
 
 dec_wo_assign   : INT id
-               | INT_ARR id LSB integer RSB
+               | INT_ARR id LSB CONST RSB
 
 return_stmt    : RETURN expression_stmt
 
-expression_stmt: arit_exp
+expression_stmt: arit_expr
 
 io_stmt        : input_exp
                | output_exp
@@ -156,7 +158,7 @@ fc_parameters: /* empty */
 	    | expression_stmt
             | expression_stmt COM fc_parameters
 
-id          : string
+id          : STR 
 
 int_arr     : LSB integer_group RSB
 
@@ -166,10 +168,10 @@ integer_group: signed_int
 signed_int  : pos_int
             | neg_int
 
-neg_int     : MINUS integer
+neg_int     : MINUS CONST 
 
-pos_int     : PLUS integer
-            | integer
+pos_int     : PLUS CONST
+            | CONST
 
 %%
 
