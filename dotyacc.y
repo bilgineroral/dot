@@ -21,7 +21,7 @@
 %token RSB
 %token LCB
 %token RCB
-%token COMMA
+%token COM
 %token NOT
 %token PLUS
 %token MINUS
@@ -151,14 +151,14 @@ fd_parameters: /* empty */
 
 fc_parameters: /* empty */
 	    | expression_stmt
-            | expression_stmt COL fc_parameters
+            | expression_stmt COM fc_parameters
 
 id          : string
 
 int_arr     : LSB integer_group RSB
 
 integer_group: signed_int
-            | signed_int COL integer_group
+            | signed_int COM integer_group
 
 signed_int  : pos_int
             | neg_int
