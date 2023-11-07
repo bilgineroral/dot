@@ -41,6 +41,8 @@
 %token CONST
 %token STR
 
+%%
+
 program:
 	stmt_list {printf("\rProgram is valid.\n");};
 
