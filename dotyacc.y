@@ -168,3 +168,17 @@ neg_int     : MINUS integer
 pos_int     : PLUS integer
             | integer
 
+%%
+
+
+
+void yyerror(char *s) {
+	fprintf(stdout, "line %d: %s\n", yylineno,s);
+}
+int main(void){
+ yyparse();
+if(yynerrs < 1){
+		printf("Parsing is successful\n");
+	}
+ return 0;
+}
