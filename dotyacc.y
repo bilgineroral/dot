@@ -146,12 +146,12 @@ params      : INT id
             | INT id COM fd_parameters
             | INT_ARR id LSB RSB COM fd_parameters
 
-fd_parameters: ""
+fd_parameters: /* empty */
             | params
 
 fc_parameters: expression_stmt
             | expression_stmt COL fc_parameters
-            | ""
+            | /* empty */
 
 id          : string
 
