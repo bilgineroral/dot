@@ -149,9 +149,9 @@ params      : INT id
 fd_parameters: /* empty */
             | params
 
-fc_parameters: expression_stmt
+fc_parameters: /* empty */
+	    | expression_stmt
             | expression_stmt COL fc_parameters
-            | /* empty */
 
 id          : string
 
