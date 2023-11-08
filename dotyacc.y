@@ -24,7 +24,7 @@ extern int yylineno;
 %token RSB
 %token LCB
 %token RCB
-%token COM
+%token COMMA
 %token NOT
 %token PLUS
 %token MINUS
@@ -34,9 +34,8 @@ extern int yylineno;
 %token EXP
 %token OR
 %token AND
-%token EQUALS
 %token EQ
-%token NOT_EQUALS
+%token NOTEQ
 %token LTE
 %token GTE
 %token LT
@@ -48,8 +47,7 @@ extern int yylineno;
 %token COMMENT
 %%
 
-program:
-	stmt_list {printf("\rProgram is valid.\n");};
+program:   stmt_list
 
 stmt_list: stmt SC
          | stmt SC stmt_list
@@ -68,18 +66,18 @@ stmt     : assign_stmt
 
 block    : LCB stmt_list RCB
 
-assign_stmt     : id EQ expression_stmt
-               | id LSB expression_stmt RSB EQ 
-   | expression_stmt
+assign_stmt : IDENTIFIER ASSIGN expression_stmt
+            | IDENTIFIER LSB expression_stmt RSB ASSIGN 
+            | expression_stmt
 
 declaration_stmt: dec_w_assign
                | dec_wo_assign
 
-dec_w_assign    : INT assign_stmt
-               | INT_ARR id LSB CONST RSB EQ expression_stmt
+dec_w_assign: INT assign_stmt
+            | INT_ARR IDENTIFIER LSB CONST RSB ASSIGN expression_stmt
 
-dec_wo_assign   : INT id
-               | INT_ARR id LSB CONST RSB
+dec_wo_assign   : INT IDENTIFIER
+               | INT_ARR IDENTIFIER LSB CONST RSB
 
 return_stmt    : RETURN expression_stmt
 
@@ -102,8 +100,8 @@ arit_expr: arit_expr OR l7_expr
 l7_expr  : l7_expr AND l6_expr
          | l6_expr
 
-l6_expr  : l6_expr EQUALS l5_expr
-         | l6_expr NOT_EQUALS l5_expr
+l6_expr  : l6_expr EQ l5_expr
+         | l6_expr NOTEQ l5_expr
          | l5_expr
 
 l5_expr  : l5_expr LT l4_expr
@@ -128,42 +126,40 @@ l1_expr  : l1_expr EXP l1_expr
          | l0_expr
 
 l0_expr  : LP arit_expr RP
-         | id
+         | IDENTIFIER
          | signed_int
          | func_call
          | input_exp
-         | id LSB expression_stmt RSB
+         | IDENTIFIER LSB expression_stmt RSB
 
 input_exp  : READ LP RP
           
 
-output_exp : ECHO LP DQ complex_str DQ RP
+output_exp : ECHO LP DQ STR DQ RP
            | ECHO LP expression_stmt RP
 
-func_dec_stmt: FUNC id LP fd_parameters RP block
-            | FUNC id LP RP block
+func_dec_stmt: FUNC IDENTIFIER LP fd_parameters RP block
+            | FUNC IDENTIFIER LP RP block
 
-func_call   : id LP fc_parameters RP
-            | id LP RP
+func_call   : IDENTIFIER LP fc_parameters RP
+            | IDENTIFIER LP RP
 
-params      : INT id
-            | INT_ARR id LSB RSB
-            | INT id COM fd_parameters
-            | INT_ARR id LSB RSB COM fd_parameters
+params      : INT IDENTIFIER
+            | INT_ARR IDENTIFIER LSB RSB
+            | INT IDENTIFIER COMMA fd_parameters
+            | INT_ARR IDENTIFIER LSB RSB COMMA fd_parameters
 
 fd_parameters: /* empty */
             | params
 
 fc_parameters: /* empty */
-	    | expression_stmt
-            | expression_stmt COM fc_parameters
-
-id          : STR 
+	         | expression_stmt
+            | expression_stmt COMMA fc_parameters
 
 int_arr     : LSB integer_group RSB
 
 integer_group: signed_int
-            | signed_int COM integer_group
+             | signed_int COMMA integer_group
 
 signed_int  : pos_int
             | neg_int
@@ -174,8 +170,6 @@ pos_int     : PLUS CONST
             | CONST
 
 %%
-
-
 
 void yyerror(char *s) {
 	fprintf(stdout, "line %d: %s\n", yylineno,s);
