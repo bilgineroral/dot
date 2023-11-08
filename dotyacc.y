@@ -60,7 +60,7 @@ stmt     : assign_stmt
          | while_stmt
          | for_stmt
          | func_dec_stmt
-         | io_stmt
+         | output_exp 
          | expression_stmt
          | return_stmt
 
@@ -68,7 +68,6 @@ block    : LCB stmt_list RCB
 
 assign_stmt : IDENTIFIER ASSIGN expression_stmt
             | IDENTIFIER LSB expression_stmt RSB ASSIGN 
-            | expression_stmt
 
 declaration_stmt: dec_w_assign
                | dec_wo_assign
@@ -82,9 +81,6 @@ dec_wo_assign   : INT IDENTIFIER
 return_stmt    : RETURN expression_stmt
 
 expression_stmt: arit_expr
-
-io_stmt        : input_exp
-               | output_exp
 
 if_stmt        : IF LP expression_stmt RP block
                | IF LP expression_stmt RP block ELSE block
@@ -122,7 +118,7 @@ l2_expr  : l2_expr MUL l1_expr
          | l2_expr MOD l1_expr
          | l1_expr
 
-l1_expr  : l1_expr EXP l1_expr
+l1_expr  : l1_expr EXP l0_expr
          | l0_expr
 
 l0_expr  : LP arit_expr RP
@@ -139,10 +135,8 @@ output_exp : ECHO LP DQ STR DQ RP
            | ECHO LP expression_stmt RP
 
 func_dec_stmt: FUNC IDENTIFIER LP fd_parameters RP block
-            | FUNC IDENTIFIER LP RP block
 
 func_call   : IDENTIFIER LP fc_parameters RP
-            | IDENTIFIER LP RP
 
 params      : INT IDENTIFIER
             | INT_ARR IDENTIFIER LSB RSB
