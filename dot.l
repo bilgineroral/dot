@@ -1,3 +1,9 @@
+%{
+#include <stdio.h>
+#include "y.tab.h"
+void yyerror(char *);
+%}
+
 %option main
 digit 		[0-9]
 integer 	{digit}+
@@ -33,7 +39,7 @@ while 		    return WHILE;
 \!      	    return NOT;
 \+      	    return PLUS;
 \-      	    return MINUS;
-\*      	    return MULT;
+\*      	    return MUL;
 \/      	    return DIV;
 \%      	    return MOD;
 \*\*    	    return EXP;
@@ -48,3 +54,9 @@ while 		    return WHILE;
 = 		        return ASSIGN;
 {integer} 	    return CONST;
 {string} 	    return STR;
+
+%%
+
+int yywrap(void){
+    return 1;
+}
