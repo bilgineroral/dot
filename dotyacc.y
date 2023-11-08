@@ -60,20 +60,20 @@ stmt     : assign_stmt
          | while_stmt
          | for_stmt
          | func_dec_stmt
-         | output_exp 
+         | output_exp
          | expression_stmt
          | return_stmt
 
 block    : LCB stmt_list RCB
 
 assign_stmt : IDENTIFIER ASSIGN expression_stmt
-            | IDENTIFIER LSB expression_stmt RSB ASSIGN 
+            | IDENTIFIER LSB expression_stmt RSB ASSIGN expression_stmt
 
 declaration_stmt: dec_w_assign
                | dec_wo_assign
 
 dec_w_assign: INT assign_stmt
-            | INT_ARR IDENTIFIER LSB CONST RSB ASSIGN expression_stmt
+            | INT_ARR IDENTIFIER LSB CONST RSB ASSIGN int_arr
 
 dec_wo_assign   : INT IDENTIFIER
                | INT_ARR IDENTIFIER LSB CONST RSB
@@ -118,7 +118,7 @@ l2_expr  : l2_expr MUL l1_expr
          | l2_expr MOD l1_expr
          | l1_expr
 
-l1_expr  : l1_expr EXP l0_expr
+l1_expr  : l1_expr EXP l1_expr
          | l0_expr
 
 l0_expr  : LP arit_expr RP
