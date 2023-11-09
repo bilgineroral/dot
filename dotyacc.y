@@ -1,8 +1,9 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-int yylex();
+int yylex(void);
 void yyerror(char* s);
+extern int yylineno;
 %}
 
 %token INT
@@ -45,6 +46,7 @@ void yyerror(char* s);
 %token DQ
 %token COMMENT
 %start program
+
 %%
 program:   stmt_list;
 
@@ -166,7 +168,7 @@ pos_int     : PLUS CONST
 void yyerror(char *s) {
 	fprintf(stdout, "line %d: %s\n", yylineno,s);
 }
-int main(){
+int main(void){
  yyparse();
 if(yynerrs < 1){
 		printf("Parsing is successful\n");

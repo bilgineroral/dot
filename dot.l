@@ -1,4 +1,9 @@
-%option yylineno
+%{
+#include <stdio.h>
+#include "y.tab.h"
+void yyerror(char *);
+%}
+
 digit 		[0-9]
 integer 	{digit}+
 normal_char 	[A-Za-z_]
@@ -8,27 +13,29 @@ string 		\"({alphanumeric}|{special_chars}|" ")*\"
 identifier 	{normal_char}+
 hash 		#
 comment 	{hash}([^\n])*{hash}
+
+%option yylineno
 %%
 int 		    return INT;
 int_arr 	    return INT_ARR;
 func 		    return FUNC;
 echo 		    return ECHO;
 read 		    return READ;
-if 		        return IF;
+if 		    return IF;
 else 		    return ELSE;
 return 		    return RETURN;
 for 		    return FOR;
 while 		    return WHILE;
 {comment} 	    return COMMENT;
-{identifier} 	return IDENTIFIER;
-\; 		        return SC;
-\( 		        return LP;
-\) 		        return RP;
-\[ 		        return LSB;
-\] 		        return RSB;
-\{ 		        return LCB;
-\} 		        return RCB;
-\, 		        return COMMA;
+{identifier} 	    return IDENTIFIER;
+\; 		    return SC;
+\( 		    return LP;
+\) 		    return RP;
+\[ 		    return LSB;
+\] 		    return RSB;
+\{ 		    return LCB;
+\} 		    return RCB;
+\, 		    return COMMA;
 \!      	    return NOT;
 \+      	    return PLUS;
 \-      	    return MINUS;
@@ -44,12 +51,12 @@ while 		    return WHILE;
 \>\=    	    return GTE;
 \<      	    return LT;
 \>      	    return GT;
-= 		        return ASSIGN;
+= 		    return ASSIGN;
 {integer} 	    return CONST;
 {string} 	    return STR;
 
 %%
 
 int yywrap(void){
-    return 1;
+	return 1;
 }
