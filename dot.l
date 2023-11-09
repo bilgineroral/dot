@@ -1,18 +1,11 @@
-%{
-#include <stdio.h>
-#include "y.tab.h"
-void yyerror(char *);
-%}
-
-%option main
+%option yylineno
 digit 		[0-9]
 integer 	{digit}+
 normal_char 	[A-Za-z_]
 alphanumeric 	({normal_char}|{digit})
-operators 	(!|\+|\-|<|>|==|!=|\*\*|\+|-|\/|%|\*|\||&)
 special_chars 	[\?!@#\$%\^\&\*\(\)\+=/-\;\'\"\|\{\}\[\]\:\.\,<>~\-\\]
-string 		\"({alphanumeric}|{special_chars}|" "|\\n)*\"
-identifier 	[A-Za-z_]+
+string 		\"({alphanumeric}|{special_chars}|" ")*\"
+identifier 	{normal_char}+
 hash 		#
 comment 	{hash}([^\n])*{hash}
 %%
