@@ -86,9 +86,8 @@ extern int yydebug;
     ASSIGN = 292,
     CONST = 293,
     STR = 294,
-    DQ = 295,
-    COMMENT = 296,
-    NL = 297
+    COMMENT = 295,
+    NL = 296
   };
 #endif
 /* Tokens.  */
@@ -129,9 +128,8 @@ extern int yydebug;
 #define ASSIGN 292
 #define CONST 293
 #define STR 294
-#define DQ 295
-#define COMMENT 296
-#define NL 297
+#define COMMENT 295
+#define NL 296
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

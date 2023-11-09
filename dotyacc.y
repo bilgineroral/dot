@@ -44,7 +44,6 @@ extern int yylineno;
 %token ASSIGN
 %token CONST
 %token STR
-%token DQ
 %token COMMENT
 %token NL
 %start program
@@ -52,10 +51,11 @@ extern int yylineno;
 %%
 program:   stmt_list;
 
-stmt_list: stmt SC NL
-         | stmt SC NL stmt_list
-         | COMMENT NL
-         | COMMENT NL stmt_list;
+stmt_list: /* empty */
+	 | NL stmt_list
+	 | stmt SC
+         | stmt SC stmt_list
+         | COMMENT stmt_list;
 
 stmt     : assign_stmt
          | declaration_stmt
@@ -67,7 +67,8 @@ stmt     : assign_stmt
          | expression_stmt
          | return_stmt;
 
-block    : LCB stmt_list RCB;
+block    : LCB stmt_list RCB 
+	 | LCB NL stmt_list RCB;
 
 assign_stmt : IDENTIFIER ASSIGN expression_stmt
             | IDENTIFIER LSB expression_stmt RSB ASSIGN expression_stmt;
@@ -134,7 +135,7 @@ l0_expr  : LP arit_expr RP
 input_exp  : READ LP RP;
           
 
-output_exp : ECHO LP DQ STR DQ RP
+output_exp : ECHO LP STR RP
            | ECHO LP expression_stmt RP;
 
 func_dec_stmt: FUNC IDENTIFIER LP fd_parameters RP block;
@@ -168,9 +169,8 @@ pos_int     : PLUS CONST
 %%
 
 #include "lex.yy.c"
-int lineno;
+int lineno = 1;
 void yyerror(char *s) {
-	// fprintf(stdout, "line %d: %s\n", yylineno,s);
 	fprintf(stdout, "line %d: %s\n", lineno,s);
 }
 int main(void){
