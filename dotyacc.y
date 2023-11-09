@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 int yylex(void);
+int yylex();
 void yyerror(char* s);
 extern int yylineno;
 %}
@@ -45,15 +46,16 @@ extern int yylineno;
 %token STR
 %token DQ
 %token COMMENT
+%token NL
 %start program
 
 %%
 program:   stmt_list;
 
-stmt_list: stmt SC
-         | stmt SC stmt_list
-         | COMMENT 
-         | COMMENT stmt_list;
+stmt_list: stmt SC NL
+         | stmt SC NL stmt_list
+         | COMMENT NL
+         | COMMENT NL stmt_list;
 
 stmt     : assign_stmt
          | declaration_stmt
@@ -165,8 +167,11 @@ pos_int     : PLUS CONST
             | CONST;
 %%
 
+#include "lex.yy.c"
+int lineno;
 void yyerror(char *s) {
-	fprintf(stdout, "line %d: %s\n", yylineno,s);
+	// fprintf(stdout, "line %d: %s\n", yylineno,s);
+	fprintf(stdout, "line %d: %s\n", lineno,s);
 }
 int main(void){
  yyparse();

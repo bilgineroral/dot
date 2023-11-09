@@ -13,6 +13,7 @@ string 		\"({alphanumeric}|{special_chars}|" ")*\"
 identifier 	{normal_char}+
 hash 		#
 comment 	{hash}([^\n])*{hash}
+nl              \n
 
 %option yylineno
 %%
@@ -54,6 +55,9 @@ while 		    return WHILE;
 = 		    return ASSIGN;
 {integer} 	    return CONST;
 {string} 	    return STR;
+{nl}         	    { extern int lineno; lineno++;
+                          return NL;
+                    }
 
 %%
 

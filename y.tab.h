@@ -87,7 +87,8 @@ extern int yydebug;
     CONST = 293,
     STR = 294,
     DQ = 295,
-    COMMENT = 296
+    COMMENT = 296,
+    NL = 297
   };
 #endif
 /* Tokens.  */
@@ -130,6 +131,7 @@ extern int yydebug;
 #define STR 294
 #define DQ 295
 #define COMMENT 296
+#define NL 297
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
