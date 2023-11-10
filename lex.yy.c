@@ -740,7 +740,7 @@ YY_DECL
 		}
 
 	{
-#line 19 "dot.l"
+#line 20 "dot.l"
 
 #line 746 "lex.yy.c"
 
@@ -811,205 +811,205 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 20 "dot.l"
+#line 21 "dot.l"
 return INT;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 21 "dot.l"
+#line 22 "dot.l"
 return INT_ARR;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 22 "dot.l"
+#line 23 "dot.l"
 return FUNC;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 23 "dot.l"
+#line 24 "dot.l"
 return ECHO;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 24 "dot.l"
+#line 25 "dot.l"
 return READ;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 25 "dot.l"
+#line 26 "dot.l"
 return IF;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 26 "dot.l"
+#line 27 "dot.l"
 return ELSE;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 27 "dot.l"
+#line 28 "dot.l"
 return RETURN;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "dot.l"
+#line 29 "dot.l"
 return FOR;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "dot.l"
+#line 30 "dot.l"
 return WHILE;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 30 "dot.l"
+#line 31 "dot.l"
 return COMMENT;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 31 "dot.l"
+#line 32 "dot.l"
 return IDENTIFIER;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 32 "dot.l"
+#line 33 "dot.l"
 return SC;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 33 "dot.l"
+#line 34 "dot.l"
 return LP;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 34 "dot.l"
+#line 35 "dot.l"
 return RP;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 35 "dot.l"
+#line 36 "dot.l"
 return LSB;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 36 "dot.l"
+#line 37 "dot.l"
 return RSB;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 37 "dot.l"
+#line 38 "dot.l"
 return LCB;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 38 "dot.l"
+#line 39 "dot.l"
 return RCB;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 39 "dot.l"
+#line 40 "dot.l"
 return COMMA;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 40 "dot.l"
+#line 41 "dot.l"
 return NOT;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 41 "dot.l"
+#line 42 "dot.l"
 return PLUS;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 42 "dot.l"
+#line 43 "dot.l"
 return MINUS;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 43 "dot.l"
+#line 44 "dot.l"
 return MUL;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 44 "dot.l"
+#line 45 "dot.l"
 return DIV;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 45 "dot.l"
+#line 46 "dot.l"
 return MOD;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 46 "dot.l"
+#line 47 "dot.l"
 return EXP;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 47 "dot.l"
+#line 48 "dot.l"
 return OR;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 48 "dot.l"
+#line 49 "dot.l"
 return AND;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 49 "dot.l"
+#line 50 "dot.l"
 return EQ;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 50 "dot.l"
+#line 51 "dot.l"
 return NOTEQ;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 51 "dot.l"
+#line 52 "dot.l"
 return LTE;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 52 "dot.l"
+#line 53 "dot.l"
 return GTE;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 53 "dot.l"
+#line 54 "dot.l"
 return LT;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 54 "dot.l"
+#line 55 "dot.l"
 return GT;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 55 "dot.l"
+#line 56 "dot.l"
 return ASSIGN;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 56 "dot.l"
+#line 57 "dot.l"
 return CONST;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 57 "dot.l"
+#line 58 "dot.l"
 return STR;
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 58 "dot.l"
+#line 59 "dot.l"
 { extern int lineno; lineno++;
-                          return NL;
+                         ;
                     }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 62 "dot.l"
+#line 63 "dot.l"
 ECHO;
 	YY_BREAK
 #line 1016 "lex.yy.c"
@@ -2029,7 +2029,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 62 "dot.l"
+#line 63 "dot.l"
 
 
 int yywrap(void){

@@ -1,7 +1,6 @@
 int ok = 0;
 
-while (!ok) {
-
+while (!ok){
         echo("Enter x: ");
         int x = read();
 
@@ -23,13 +22,3 @@ echo("(x times y times z) is: ");
 echo (x * y * z);
 echo("\n");
 
-
-
-
-
-int a = 3;
-
-
-
-
-int b = 4;

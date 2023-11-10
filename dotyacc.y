@@ -51,24 +51,23 @@ extern int yylineno;
 %%
 program:   stmt_list;
 
-stmt_list: /* empty */
-	 | NL stmt_list
-	 | stmt SC
+stmt_list: /* empty */ 
          | stmt SC stmt_list
-         | COMMENT stmt_list;
+         | COMMENT stmt_list
+	 | halil stmt_list;
+
+halil:     if_stmt
+         | while_stmt
+	 | for_stmt
+ 	 | func_dec_stmt; 
 
 stmt     : assign_stmt
          | declaration_stmt
-         | if_stmt
-         | while_stmt
-         | for_stmt
-         | func_dec_stmt
          | output_exp
          | expression_stmt
          | return_stmt;
 
-block    : LCB stmt_list RCB 
-	 | LCB NL stmt_list RCB;
+block    : LCB stmt_list RCB; 
 
 assign_stmt : IDENTIFIER ASSIGN expression_stmt
             | IDENTIFIER LSB expression_stmt RSB ASSIGN expression_stmt;
@@ -77,10 +76,10 @@ declaration_stmt: dec_w_assign
                 | dec_wo_assign;
 
 dec_w_assign: INT assign_stmt
-            | INT_ARR IDENTIFIER LSB CONST RSB ASSIGN int_arr;
+            | INT_ARR IDENTIFIER LSB expression_stmt RSB ASSIGN int_arr;
 
 dec_wo_assign   : INT IDENTIFIER
-| INT_ARR IDENTIFIER LSB CONST RSB;
+| INT_ARR IDENTIFIER LSB expression_stmt RSB;
 
 return_stmt    : RETURN expression_stmt;
 
@@ -91,8 +90,8 @@ if_stmt        : IF LP expression_stmt RP block
 
 while_stmt     : WHILE LP expression_stmt RP block;
 
-for_stmt       : FOR LP dec_w_assign SC expression_stmt SC assign_stmt RP
-| FOR LP assign_stmt SC expression_stmt SC assign_stmt RP;
+for_stmt       : FOR LP dec_w_assign SC expression_stmt SC assign_stmt RP block
+| FOR LP assign_stmt SC expression_stmt SC assign_stmt RP block;
 
 arit_expr: arit_expr OR l7_expr
         | l7_expr;

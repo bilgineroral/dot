@@ -14,6 +14,7 @@ identifier 	{normal_char}+
 hash 		#
 comment 	{hash}([^\n])*{hash}
 nl              \n
+tab		\t
 
 %option yylineno
 %%
@@ -56,7 +57,7 @@ while 		    return WHILE;
 {integer} 	    return CONST;
 {string} 	    return STR;
 {nl}         	    { extern int lineno; lineno++;
-                          return NL;
+                         ;
                     }
 
 %%
