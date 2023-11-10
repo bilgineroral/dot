@@ -1,4 +1,0 @@
-int a = 3;
-echo(a);
-echo("hello, world!");
-syntax-error --

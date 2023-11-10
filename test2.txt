@@ -6,8 +6,8 @@ func foo(int p, int q) {
         echo(q);
         echo("\n");
 
-        if (p > q) {
-                return p;
+        if (p <  q) {
+                return p; 
         }
         return q;
 }
@@ -24,6 +24,6 @@ for (int i = 0; i < 4; i = i + 1) {
                 echo(b[j]);
                 echo(", c= ");
                 echo(c);
-                echo("\n");
+                echo("\n);
         }
 }

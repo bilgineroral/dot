@@ -87,7 +87,8 @@ extern int yydebug;
     CONST = 293,
     STR = 294,
     COMMENT = 295,
-    NL = 296
+    NL = 296,
+    SPECHAR = 297
   };
 #endif
 /* Tokens.  */
@@ -130,6 +131,7 @@ extern int yydebug;
 #define STR 294
 #define COMMENT 295
 #define NL 296
+#define SPECHAR 297
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

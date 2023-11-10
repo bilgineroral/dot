@@ -1,6 +1,6 @@
 int ok = 0;
 
-while (!ok){
+while (!ok) {
         echo("Enter x: ");
         int x = read();
 
