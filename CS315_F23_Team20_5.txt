@@ -1,0 +1,29 @@
+# BUBBLE SORT ALGORITHM IMPLEMENTED IN DOT LANGUAGE #
+
+func bubbleSort(int_arr arr, int n) {
+	int i;
+	int j;
+	int flag = 1;
+
+	for (i = 0; (i < n - 1) & flag; i = i + 1) {
+		flag = 0;
+
+		for (j = 0; j < n - i - 1; j = j + 1) {
+			if (arr[j] > arr[j+1]) {
+				# swap values #
+				int tmp = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = tmp;
+				flag = 1; # true #
+			}
+		}
+		# syntax error here, missing ‘}’ #
+}
+
+const int SIZE = 5;
+int_arr arr[5] = [10, 6, -2, 3, 5];
+bubbleSort(arr, SIZE);
+echo("Sorted Array: \n");
+echo(arr);
+echo("\n");
+

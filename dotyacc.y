@@ -54,9 +54,9 @@ program:   stmt_list;
 stmt_list: /* empty */ 
          | stmt SC stmt_list
          | COMMENT stmt_list
-	 | halil stmt_list;
+	 | block_stmt stmt_list;
 
-halil:     if_stmt
+block_stmt:     if_stmt
          | while_stmt
 	 | for_stmt
  	 | func_dec_stmt; 
@@ -75,29 +75,29 @@ assign_stmt : IDENTIFIER ASSIGN expression_stmt
 declaration_stmt: dec_w_assign
                 | dec_wo_assign;
 
-dec_w_assign: INT assign_stmt
+dec_w_assign: INT IDENTIFIER ASSIGN expression_stmt
             | INT_ARR IDENTIFIER LSB expression_stmt RSB ASSIGN int_arr;
 
 dec_wo_assign   : INT IDENTIFIER
-| INT_ARR IDENTIFIER LSB expression_stmt RSB;
+		| INT_ARR IDENTIFIER LSB expression_stmt RSB;
 
 return_stmt    : RETURN expression_stmt;
 
 expression_stmt: arit_expr;
 
 if_stmt        : IF LP expression_stmt RP block
-| IF LP expression_stmt RP block ELSE block;
+	       | IF LP expression_stmt RP block ELSE block;
 
 while_stmt     : WHILE LP expression_stmt RP block;
 
 for_stmt       : FOR LP dec_w_assign SC expression_stmt SC assign_stmt RP block
-| FOR LP assign_stmt SC expression_stmt SC assign_stmt RP block;
+	       | FOR LP assign_stmt SC expression_stmt SC assign_stmt RP block;
 
 arit_expr: arit_expr OR l7_expr
-        | l7_expr;
+         | l7_expr;
 
 l7_expr  : l7_expr AND l6_expr
-          | l6_expr;
+         | l6_expr;
 
 l6_expr  : l6_expr EQ l5_expr
          | l6_expr NOTEQ l5_expr
@@ -142,21 +142,22 @@ func_dec_stmt: FUNC IDENTIFIER LP fd_parameters RP block;
 func_call   : IDENTIFIER LP fc_parameters RP;
 
 params      : INT IDENTIFIER
-            | INT_ARR IDENTIFIER LSB RSB
+            | INT_ARR IDENTIFIER 
             | INT IDENTIFIER COMMA fd_parameters
-            | INT_ARR IDENTIFIER LSB RSB COMMA fd_parameters;
+            | INT_ARR IDENTIFIER COMMA fd_parameters;
 
 fd_parameters: /* empty */
              | params;
 
 fc_parameters: /* empty */
-	           | expression_stmt
-		         | expression_stmt COMMA fc_parameters;
+	     | expression_stmt
+	     | expression_stmt COMMA fc_parameters;
 
 int_arr     : LSB integer_group RSB;
 
-integer_group: signed_int
-             | signed_int COMMA integer_group;
+integer_group: /* empty */ 
+	     | expression_stmt
+             | expression_stmt COMMA integer_group;
 
 signed_int  : pos_int
             | neg_int;
