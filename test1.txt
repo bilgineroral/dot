@@ -8,7 +8,12 @@ while (!ok) {
         int y = read();
 
         echo("\nEnter z: ");
-        int z = read();
+        
+
+
+
+
+	int z = read();
 
         if ((x == 0) | (y == 0) | (z == 0)) {
                 echo("You should enter nonzero values\n");

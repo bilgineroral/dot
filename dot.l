@@ -57,8 +57,8 @@ while 		    return WHILE;
 {integer} 	    return CONST;
 {string} 	    return STR;
 {special_chars}     return SPECHAR;
-{nl}         	    { extern int lineno; lineno++;
-                         ;
+{nl}         	    { 	extern int lineno; 
+			lineno++;
                     }
 
 %%

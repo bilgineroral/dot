@@ -21,7 +21,7 @@ func bubbleSort(int_arr arr[], int n) {
 }
 
 int_arr arr[5] = [10, 6, -2, 3, 5];
-bubbleSort(arr, SIZE);
+bubbleSort(arr, 5);
 echo("Sorted Array: \n");
 echo(arr);
 echo("\n");

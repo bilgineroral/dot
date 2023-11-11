@@ -45,7 +45,6 @@ extern int yylineno;
 %token CONST
 %token STR
 %token COMMENT
-%token NL
 %token SPECHAR
 %start program
 
@@ -169,7 +168,8 @@ pos_int     : PLUS CONST
 %%
 
 #include "lex.yy.c"
-int lineno = 0;
+int lineno = 1;
+
 void yyerror(char *s) {
 	fprintf(stdout, "line %d: %s\n", lineno,s);
 }
