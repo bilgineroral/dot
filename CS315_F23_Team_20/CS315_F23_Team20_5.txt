@@ -20,7 +20,7 @@ func bubbleSort(int_arr arr, int n) {
 		# syntax error here, missing ‘}’ #
 }
 
-const int SIZE = 5;
+int SIZE = 5;
 int_arr arr[5] = [10, 6, -2, 3, 5];
 bubbleSort(arr, SIZE);
 echo("Sorted Array: \n");
